@@ -4,11 +4,11 @@ from timesheet_test import transcribe_audio, transform_to_timesheet, evaluate
 def main():
     audio_path = "assets/test.wav"
     expected_output = [
-        "ACME Inc",
+        "AGORA plus a.s.",
         "Development",
         "Alpha",
-        "01:30",
-        "Bug fix deployment"
+        "04:00",
+        "správa serverů"
     ]
 
     print("Transcribing audio...")
