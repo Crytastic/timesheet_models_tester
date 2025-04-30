@@ -3,12 +3,13 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from difflib import SequenceMatcher
 from prompts import SYSTEM_PROMPT_EN, USER_PROMPT_TEMPLATE_EN
+from config import CLIENTS, ACTIVITIES, PROJECTS, LANGUAGE
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 
-def transcribe_audio(file_path: str, language='en') -> str:
+def transcribe_audio(file_path: str, language=LANGUAGE) -> str:
     with open(file_path, 'rb') as audio_file:
         transcript = client.audio.transcriptions.create(
             model="whisper-1",
@@ -18,10 +19,9 @@ def transcribe_audio(file_path: str, language='en') -> str:
     return transcript.text
 
 
-def transform_to_timesheet(text: str, language='en',
-                           clients="ACME Inc,Globex",
-                           activities="Development,Meeting",
-                           projects="Alpha,Beta") -> list:
+def transform_to_timesheet(text: str, clients=CLIENTS,
+                           activities=ACTIVITIES,
+                           projects=PROJECTS) -> list:
     user_prompt = USER_PROMPT_TEMPLATE_EN.format(
         clients=clients,
         activities=activities,
