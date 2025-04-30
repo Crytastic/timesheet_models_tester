@@ -1,27 +1,11 @@
 import os
 from openai import OpenAI
-from openai.types.chat import ChatCompletionMessageParam
 from dotenv import load_dotenv
 from difflib import SequenceMatcher
+from prompts import SYSTEM_PROMPT_EN, USER_PROMPT_TEMPLATE_EN
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-
-SYSTEM_PROMPT_EN = """You are a skilled text transformer that understands work descriptions in English and produces data records for a structured database."""
-
-USER_PROMPT_TEMPLATE_EN = """
-Transform the text given below into a CSV row semicolon separated in this exact format: "CLIENT;ACTIVITY;PROJECT;TIME SPENT;WORK DESCRIPTION"
-
-Instructions:
-* Always try to fill all attributes. If not possible, use a generic option or "N/A"
-* CLIENT options: {clients}
-* ACTIVITY options: {activities}
-* PROJECT options: {projects}
-* TIME SPENT format: HH:MM
-* WORK DESCRIPTION: max 5 words
-
-Text to process: {transcribed_text}
-"""
 
 
 def transcribe_audio(file_path: str, language='en') -> str:
