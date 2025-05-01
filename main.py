@@ -21,8 +21,20 @@ def run_test_case(index: int, case: dict):
 
 
 def main():
+    total_score = 0
+    num_cases = len(TEST_CASES)
+
     for i, case in enumerate(TEST_CASES):
         run_test_case(i, case)
+        transcribed_text = transcribe_audio(case["audio_path"])
+        predicted = transform_to_timesheet(transcribed_text)
+        result = evaluate(predicted, case["expected"])
+        total_score += result['overall_score']
+
+    average_score = total_score / num_cases
+    print(f"\n=== Summary ===")
+    print(f"Tested {num_cases} cases")
+    print(f"Average Overall Accuracy: {average_score * 100:.2f}%")
 
 
 if __name__ == "__main__":
