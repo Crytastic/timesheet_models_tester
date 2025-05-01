@@ -2,7 +2,6 @@ CLIENTS = [
     "Digiskills s.r.o.",
     "AGORA plus a.s.",
     "BDO Valuation s.r.o.",
-    "BDO Czech Republic s.r.o.",
     "Healthy Longevity",
     "Statutární město Brno",
     "DevBalance",
@@ -10,7 +9,8 @@ CLIENTS = [
     "ENBRA a.s.",
     "Generali Česká pojišťovna a.s.",
     "Šmídl Provozní Holding",
-    "Brantl & Partners s.r.o."
+    "Brantl & Partners s.r.o.",
+    "FasterCZ"
 ]
 
 ACTIVITIES = [
@@ -20,7 +20,8 @@ ACTIVITIES = [
     "ML/AI Consulting",
     "ML/AI App dev",
     "Infrastructure Networks",
-    "Infrastructure VM management"
+    "Infrastructure VM management",
+    "Development"
 ]
 
 PROJECTS = [
