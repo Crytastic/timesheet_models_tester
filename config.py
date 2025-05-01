@@ -1,3 +1,5 @@
+# config.py
+
 CLIENTS = [
     "Digiskills s.r.o.",
     "AGORA plus a.s.",
@@ -48,3 +50,11 @@ PROJECTS = [
 ]
 
 LANGUAGE = "cs"
+
+# Audio transcription configuration
+TRANSCRIPTION_MODEL = "whisper-1"
+
+# Text-to-timesheet configuration
+TEXT_TO_TIMESHEET_MODEL = "gpt-3.5-turbo"
+TEMPERATURE = 1.0
+MAX_TOKENS = 150

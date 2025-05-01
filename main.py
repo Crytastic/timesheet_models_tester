@@ -2,7 +2,7 @@ from timesheet_test import transcribe_audio, transform_to_timesheet, evaluate
 from annotations import TEST_CASES
 
 
-def run_test_case(index: int, case: dict):
+def run_test_case(index: int, case: dict) -> float:
     print(f"\n--- Running Test Case #{index + 1} ---")
     print("Transcribing audio...")
     transcribed_text = transcribe_audio(case["audio_path"])
@@ -19,17 +19,16 @@ def run_test_case(index: int, case: dict):
         print(f"{field}: {score * 100:.2f}%")
     print(f"Overall Accuracy: {result['overall_score'] * 100:.2f}%")
 
+    return result['overall_score']
+
 
 def main():
     total_score = 0
     num_cases = len(TEST_CASES)
 
     for i, case in enumerate(TEST_CASES):
-        run_test_case(i, case)
-        transcribed_text = transcribe_audio(case["audio_path"])
-        predicted = transform_to_timesheet(transcribed_text)
-        result = evaluate(predicted, case["expected"])
-        total_score += result['overall_score']
+        score = run_test_case(i, case)
+        total_score += score
 
     average_score = total_score / num_cases
     print(f"\n=== Summary ===")

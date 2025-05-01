@@ -11,7 +11,7 @@ SYSTEM_PROMPT_CS = (
 
 # --- User Prompt Templates ---
 USER_PROMPT_TEMPLATE_EN = """
-Transform the text given below into a CSV row semicolon separated in this exact format: "CLIENT;ACTIVITY;PROJECT;TIME SPENT;WORK DESCRIPTION"
+Transform the text given below into a CSV row semicolon separated in this exact format: CLIENT;ACTIVITY;PROJECT;TIME SPENT;WORK DESCRIPTION
 
 Instructions for the transformation:
 * Always try to fill out all attributes. If it is not possible to extract from the text, use a generic option if available. If not, use "N/A"
@@ -27,7 +27,7 @@ Text to process: {transcribed_text}
 """
 
 USER_PROMPT_TEMPLATE_CS = """
-Převeď následující text do jednoho řádku CSV, odděleného středníkem, ve formátu: "KLIENT;AKTIVITA;PROJEKT;STRÁVENÝ ČAS;POPIS PRÁCE"
+Převeď následující text do jednoho řádku CSV, odděleného středníkem, ve formátu: KLIENT;AKTIVITA;PROJEKT;STRÁVENÝ ČAS;POPIS PRÁCE
 
 Instrukce:
 * Vždy se snaž vyplnit všechna pole. Pokud to není možné, použij obecnou možnost, nebo "N/A".
