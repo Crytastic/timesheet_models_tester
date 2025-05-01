@@ -2,7 +2,7 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 from difflib import SequenceMatcher
-from prompts import SYSTEM_PROMPT_EN, USER_PROMPT_TEMPLATE_EN
+from prompts import SYSTEM_PROMPT_CS, USER_PROMPT_TEMPLATE_CS
 from config import CLIENTS, ACTIVITIES, PROJECTS, LANGUAGE
 
 load_dotenv()
@@ -22,7 +22,7 @@ def transcribe_audio(file_path: str, language=LANGUAGE) -> str:
 def transform_to_timesheet(text: str, clients=CLIENTS,
                            activities=ACTIVITIES,
                            projects=PROJECTS) -> list:
-    user_prompt = USER_PROMPT_TEMPLATE_EN.format(
+    user_prompt = USER_PROMPT_TEMPLATE_CS.format(
         clients=clients,
         activities=activities,
         projects=projects,
@@ -31,7 +31,7 @@ def transform_to_timesheet(text: str, clients=CLIENTS,
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
-            {"role": "system", "content": SYSTEM_PROMPT_EN},
+            {"role": "system", "content": SYSTEM_PROMPT_CS},
             {"role": "user", "content": user_prompt}
         ],
         temperature=0.5,
