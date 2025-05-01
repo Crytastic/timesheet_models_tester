@@ -3,7 +3,7 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from difflib import SequenceMatcher
 from prompts import SYSTEM_PROMPT_CS, USER_PROMPT_TEMPLATE_CS
-from config import CLIENTS, ACTIVITIES, PROJECTS, LANGUAGE, TEMPERATURE, MAX_TOKENS, TEXT_TO_TIMESHEET_MODEL, TRANSCRIPTION_MODEL
+from config import CLIENTS, ACTIVITIES, PROJECTS, LANGUAGE, MAX_TOKENS, TEXT_TO_TIMESHEET_MODEL, TRANSCRIPTION_MODEL
 
 load_dotenv()
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -19,7 +19,9 @@ def transcribe_audio(file_path: str, language=LANGUAGE) -> str:
     return transcript.text
 
 
-def transform_to_timesheet(text: str, clients=CLIENTS,
+def transform_to_timesheet(text: str,
+                           temperature: float,
+                           clients=CLIENTS,
                            activities=ACTIVITIES,
                            projects=PROJECTS) -> list:
     user_prompt = USER_PROMPT_TEMPLATE_CS.format(
@@ -34,7 +36,7 @@ def transform_to_timesheet(text: str, clients=CLIENTS,
             {"role": "system", "content": SYSTEM_PROMPT_CS},
             {"role": "user", "content": user_prompt}
         ],
-        temperature=TEMPERATURE,
+        temperature=temperature,
         max_tokens=MAX_TOKENS
     )
     content = response.choices[0].message.content

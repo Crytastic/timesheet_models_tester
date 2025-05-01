@@ -56,5 +56,5 @@ TRANSCRIPTION_MODEL = "whisper-1"
 
 # Text-to-timesheet configuration
 TEXT_TO_TIMESHEET_MODEL = "gpt-3.5-turbo"
-TEMPERATURE = 1.0
+TEMPERATURE_VALUES = [1.0, 0.75, 0.5, 0.25, 0.0]
 MAX_TOKENS = 150
